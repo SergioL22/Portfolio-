@@ -1,6 +1,6 @@
-# Reflex Portfolio
+# Sergio Portfolio
 
-Static site with an AI chat hero that answers questions about Sergio "Reflex"
+Static site with an AI chat hero that answers questions about Sergio "Sergio"
 Lozano. The chat runs through a Vercel serverless function so the Anthropic
 API key stays server-side.
 
@@ -11,7 +11,7 @@ index.html         the page
 styles.css          design
 script.js           chat frontend logic
 api/chat.js         serverless function — calls the Anthropic API
-data/knowledge.js   everything the AI is allowed to say about Reflex (edit this to update facts)
+data/knowledge.js   everything the AI is allowed to say about Sergio (edit this to update facts)
 ```
 
 ## Deploy on Vercel
