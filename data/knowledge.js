@@ -40,7 +40,8 @@ ChromaDB, Weights & Biases.
 ## Flagship project: BioLyra
 An agentic biomedical AI assistant — his centerpiece project, referenced in nearly
 every application. Architecture:
-- QLoRA fine-tuning of Phi-3.5-mini on the PubMedQA dataset.
+- QLoRA fine-tuning of Phi-3.5-mini on the PubMedQA dataset (4-bit NF4 quantization,
+  LoRA rank 16), with runs tracked in Weights & Biases.
 - RAG pipeline using BioBERT embeddings over ~2,500 PubMed abstract chunks, stored in ChromaDB.
 - A LangGraph agent routes each incoming query to one of three paths: casual chat,
   RAG retrieval over the indexed abstracts, or a live NCBI Entrez search (triggered
@@ -67,18 +68,37 @@ active project.
 - Measured results: 7.7x faster than the Python baseline (105.2 vs 13.7 tok/s), 5.2x
   speedup from KV caching alone, and 58% memory reduction from INT8 quantization for
   only +0.01% perplexity cost.
+- Trained for 20,000 steps on 912,112 packed TinyStories sequences. The original batch
+  size of 64 OOM'd on the 12GB training GPU; fixed with batch size 16 and 4-step
+  gradient accumulation to preserve the intended effective batch size.
+- Full write-up with charts (loss curves, throughput, load testing, attention
+  visualizations) is public at sergiol22.github.io/Forge/.
 
 ## Other projects
-- Crypto Price Analyzer: a terminal-based crypto dashboard using the CoinGecko API —
-  live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance,
-  volume spikes), a local SQLite-backed portfolio tracker with P&L, and price/RSI
+- Crypto Price Analyzer: a menu-driven CLI against the CoinGecko API — live prices,
+  technical indicators (RSI, MACD, Bollinger Bands, support/resistance, volume spikes),
+  a local SQLite-backed portfolio tracker with P&L and backtesting, and price/RSI
   alerts. Actively being extended.
-- D&D Discord Bot (SergioL22/DND-Discord-Bot): a full-featured Discord bot with an
-  AI Dungeon Master powered by OpenAI.
-- Automated job application pipeline: a tool (and portfolio project) combining a job
-  scraper, LLM-assisted tailoring of application materials, and an application tracker.
-- Disease Prediction (heart disease risk, UCI Cleveland dataset), SpotifyData (a
-  personal streaming-history dashboard).
+- D&D Discord Bot (SergioL22/DND-Discord-Bot): a feature-complete D&D 5e Discord bot —
+  full character sheets, initiative-based combat tracking with persistent encounters,
+  spell/slot tracking pulled live from the D&D 5e API, and an AI Dungeon Master
+  (OpenAI) that generates scenes, NPC dialogue, and encounters with per-channel
+  campaign memory. Campaigns save, load, and export.
+- Automated job application pipeline: scrapes Greenhouse, Lever, and USAJobs postings
+  into SQLite with four-level deduplication (external ID, canonical URL, exact
+  company/title/location, then fuzzy matching), scores each posting against multiple
+  resume profiles with an explainable fit breakdown, and uses the Claude API to tailor
+  resumes and cover letters without inventing qualifications. A safety-checked flow
+  can fill and submit Greenhouse applications, but only after an explicit, fresh
+  confirmation — nothing submits automatically.
+- Disease Prediction: trains and compares tuned Logistic Regression and Random Forest
+  models (RandomizedSearchCV, 5-fold CV, scored on ROC-AUC) on the UCI Cleveland heart
+  disease dataset, then serves the winner through a Streamlit app with color-coded
+  risk levels and SHAP-based explanations of which clinical features drove each
+  prediction.
+- SpotifyData: parses his own exported Spotify streaming history and Wrapped data
+  into a Streamlit dashboard — top artists, listening trends over time, an hour/day
+  listening heatmap, and genre enrichment via the Spotify API with local caching.
 - Structured coursework repos from Ed Donner's LLM Engineering and Agentic AI courses.
 
 ## Links

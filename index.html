@@ -74,9 +74,10 @@
         retrieval over a ChromaDB index of ~2,500 PubMed abstract chunks embedded with
         BioBERT, or a live NCBI Entrez search when the question flags something recent
         (a year like "2025" in the query is enough to trigger it). The answer is then
-        synthesized by a Phi-3.5-mini model QLoRA fine-tuned on PubMedQA. He evaluated the
-        fine-tune against the base model with BERTScore, and shipped it two ways: a Gradio
-        chat interface and a FastAPI REST endpoint.
+        synthesized by a Phi-3.5-mini model QLoRA fine-tuned on PubMedQA (4-bit NF4
+        quantization, LoRA rank 16). He evaluated the fine-tune against the base model with
+        BERTScore, tracked runs in Weights &amp; Biases, and shipped it two ways: a Gradio chat
+        interface and a FastAPI REST endpoint.
       </p>
       <p class="project-note">
         Grew out of an earlier project, Lyra — his first local AI assistant, running on
@@ -102,6 +103,11 @@
         quantization cuts memory 58% for +0.01% perplexity — and where an optimization
         didn't pay off on this hardware, that's reported too, not hidden.
       </p>
+      <p class="project-note">
+        Trained for 20,000 steps on 912,112 packed TinyStories sequences; the original batch
+        size of 64 OOM'd on the 12GB training GPU, fixed with batch size 16 and 4-step
+        gradient accumulation to preserve the intended effective batch size.
+      </p>
       <p class="project-link">
         <a href="https://sergiol22.github.io/Forge/" target="_blank" rel="noopener">View full benchmark results &rarr;</a>
       </p>
@@ -110,23 +116,23 @@
     <div class="project-grid">
       <article class="project">
         <h3>D&amp;D Discord Bot</h3>
-        <p>A Discord bot with an AI Dungeon Master powered by OpenAI, running full campaign sessions.</p>
+        <p>A feature-complete D&amp;D 5e Discord bot: character sheets, initiative-based combat with persistent encounters, and spell/slot tracking pulled live from the D&amp;D 5e API. An AI Dungeon Master (OpenAI) generates scenes, NPC dialogue, and encounters with per-channel campaign memory; campaigns save, load, and export.</p>
       </article>
       <article class="project">
         <h3>Job Application Pipeline</h3>
-        <p>A scraper, LLM-assisted material tailoring, and an application tracker, built to automate his own job search.</p>
+        <p>Scrapes Greenhouse, Lever, and USAJobs postings into SQLite with four-level deduplication, scores each against multiple resume profiles with an explainable breakdown, and uses the Claude API to tailor resumes and cover letters without inventing qualifications. A safety-checked flow can fill and submit Greenhouse applications, but only after an explicit, fresh confirmation.</p>
       </article>
       <article class="project">
         <h3>Disease Prediction</h3>
-        <p>A heart disease risk model trained on the UCI Cleveland dataset.</p>
+        <p>Trains and compares tuned Logistic Regression and Random Forest models (RandomizedSearchCV, 5-fold CV, ROC-AUC) on the UCI Cleveland heart disease dataset, then serves the winner through a Streamlit app with color-coded risk levels and SHAP-based explanations of which clinical features drove each prediction.</p>
       </article>
       <article class="project">
         <h3>SpotifyData</h3>
-        <p>A dashboard built on his own Spotify streaming history.</p>
+        <p>Parses his own exported Spotify streaming history and Wrapped data into a Streamlit dashboard: top artists, listening trends over time, an hour/day heatmap, and genre enrichment via the Spotify API with local caching.</p>
       </article>
       <article class="project">
         <h3>Crypto Price Analyzer</h3>
-        <p>A terminal-based crypto dashboard: live prices, technical indicators (RSI, MACD, Bollinger Bands), a local portfolio tracker with P&amp;L, and price/RSI alerts.</p>
+        <p>A menu-driven CLI against the CoinGecko API: live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance), a local portfolio tracker with P&amp;L and backtesting, and price/RSI alerts.</p>
       </article>
     </div>
   </section>
