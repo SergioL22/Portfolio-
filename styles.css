@@ -56,11 +56,16 @@ a:hover { color: var(--signal); }
 }
 
 .masthead {
+  padding: 0 6vw;
+  border-bottom: 1px solid var(--slide-border);
+}
+.masthead-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 6vw;
-  border-bottom: 1px solid var(--slide-border);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 0;
 }
 .mark {
   font-family: var(--mono);
@@ -77,7 +82,7 @@ a:hover { color: var(--signal); }
 }
 .masthead-nav a:hover { color: var(--culture); }
 
-main { max-width: 760px; margin: 0 auto; padding: 0 6vw; }
+main { max-width: 960px; margin: 0 auto; padding: 0 6vw; }
 
 .hero {
   padding: 64px 0 48px;
