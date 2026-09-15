@@ -63,7 +63,7 @@ a:hover { color: var(--signal); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 960px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 28px 0;
 }
@@ -82,7 +82,7 @@ a:hover { color: var(--signal); }
 }
 .masthead-nav a:hover { color: var(--culture); }
 
-main { max-width: 960px; margin: 0 auto; padding: 0 6vw; }
+main { max-width: 1140px; margin: 0 auto; padding: 0 6vw; }
 
 .hero {
   padding: 64px 0 48px;
@@ -195,7 +195,7 @@ main { max-width: 960px; margin: 0 auto; padding: 0 6vw; }
 
 .project-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px 32px;
   margin-top: 36px;
 }
