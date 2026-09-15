@@ -186,6 +186,13 @@ main { max-width: 1140px; margin: 0 auto; padding: 0 6vw; }
 }
 .project-flagship { max-width: 800px; padding: 22px 24px; background: var(--slide); border: 1px solid var(--slide-border); border-radius: 6px; }
 .project-flagship p { max-width: none; }
+.project-link { margin: 12px 0 0; }
+.project-link a {
+  font-family: var(--mono);
+  font-size: 14px;
+  text-decoration: none;
+}
+.project-link a:hover { text-decoration: underline; }
 .project-role {
   font-family: var(--mono);
   font-size: 13px;
