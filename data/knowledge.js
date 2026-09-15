@@ -52,13 +52,33 @@ BioLyra grew out of an earlier project called Lyra, his first local AI assistant
 (Ollama/Llama 3.1, Flask, SQLite), which he iterated on with more advanced RAG
 techniques and renamed BioLyra.
 
+## Flagship project: Forge
+From-scratch LLM training (JAX) + high-performance Rust inference. His most recently
+active project.
+- Hand-wrote a decoder-only transformer (13.69M parameters) from scratch in JAX —
+  no HuggingFace AutoModel, hand-rolled attention, RoPE, and RMSNorm — trained on
+  TinyStories.
+- Built a Python reference inference implementation, then reimplemented inference in
+  Rust and numerically verified it matches the JAX model before trusting any
+  performance claim.
+- Incrementally optimized the Rust engine: KV caching, static and continuous batching,
+  and INT8 quantization, benchmarking each step against the last and reporting
+  honestly when something didn't help.
+- Measured results: 7.7x faster than the Python baseline (105.2 vs 13.7 tok/s), 5.2x
+  speedup from KV caching alone, and 58% memory reduction from INT8 quantization for
+  only +0.01% perplexity cost.
+
 ## Other projects
+- Crypto Price Analyzer: a terminal-based crypto dashboard using the CoinGecko API —
+  live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance,
+  volume spikes), a local SQLite-backed portfolio tracker with P&L, and price/RSI
+  alerts. Actively being extended.
 - D&D Discord Bot (SergioL22/DND-Discord-Bot): a full-featured Discord bot with an
   AI Dungeon Master powered by OpenAI.
 - Automated job application pipeline: a tool (and portfolio project) combining a job
   scraper, LLM-assisted tailoring of application materials, and an application tracker.
-- Crypto Price Analyzer, Disease Prediction (heart disease risk, UCI Cleveland dataset),
-  SpotifyData (a personal streaming-history dashboard).
+- Disease Prediction (heart disease risk, UCI Cleveland dataset), SpotifyData (a
+  personal streaming-history dashboard).
 - Structured coursework repos from Ed Donner's LLM Engineering and Agentic AI courses.
 
 ## Links

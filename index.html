@@ -83,6 +83,25 @@
       </p>
     </article>
 
+    <article class="project project-flagship">
+      <h3>Forge</h3>
+      <p class="project-role">From-scratch LLM training (JAX) + high-performance Rust inference</p>
+      <p>
+        A decoder-only transformer (13.69M parameters), hand-written from scratch in JAX —
+        no HuggingFace <code>AutoModel</code>, hand-rolled attention, RoPE, and RMSNorm —
+        and trained on TinyStories. Inference is then reimplemented independently in Rust
+        and numerically verified against the JAX model before any performance claim is
+        trusted, then incrementally optimized: KV caching, static and continuous batching,
+        and INT8 quantization, each step benchmarked against the last.
+      </p>
+      <p class="project-note">
+        Every number is measured, not estimated: the Rust engine runs 7.7x faster than the
+        Python baseline (105.2 vs 13.7 tok/s), KV caching alone is a 5.2x speedup, and INT8
+        quantization cuts memory 58% for +0.01% perplexity — and where an optimization
+        didn't pay off on this hardware, that's reported too, not hidden.
+      </p>
+    </article>
+
     <div class="project-grid">
       <article class="project">
         <h3>D&amp;D Discord Bot</h3>
@@ -99,6 +118,10 @@
       <article class="project">
         <h3>SpotifyData</h3>
         <p>A dashboard built on his own Spotify streaming history.</p>
+      </article>
+      <article class="project">
+        <h3>Crypto Price Analyzer</h3>
+        <p>A terminal-based crypto dashboard: live prices, technical indicators (RSI, MACD, Bollinger Bands), a local portfolio tracker with P&amp;L, and price/RSI alerts.</p>
       </article>
     </div>
   </section>
