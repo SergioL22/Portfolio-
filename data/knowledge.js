@@ -52,6 +52,7 @@ every application. Architecture:
 BioLyra grew out of an earlier project called Lyra, his first local AI assistant
 (Ollama/Llama 3.1, Flask, SQLite), which he iterated on with more advanced RAG
 techniques and renamed BioLyra.
+A live demo is public at biolyra-orbscaelxwlx7utxth6nue.streamlit.app.
 
 ## Flagship project: Forge
 From-scratch LLM training (JAX) + high-performance Rust inference. His most recently
