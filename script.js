@@ -57,3 +57,29 @@
     sendMessage(text);
   });
 })();
+
+// Reveal sections as they enter the viewport; content stays visible without JS.
+(function () {
+  const sections = document.querySelectorAll('.page-section');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reveal = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        reveal.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
+  sections.forEach((section) => { section.classList.add('reveal'); reveal.observe(section); });
+  const nav = document.querySelectorAll('.masthead-nav a');
+  const active = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      nav.forEach((link) => {
+        if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-10% 0px -65% 0px' });
+  sections.forEach((section) => active.observe(section));
+})();

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sergio — Sergio Lozano</title>
-<meta name="description" content="Software engineer with a biology background. Ask the assistant below about his work.">
+<title>Sergio Lozano — Software Engineer</title>
+<meta name="description" content="Sergio Lozano — software engineer focused on machine learning, data engineering, and efficient AI systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,14 +12,14 @@
 </head>
 <body>
 
-<div class="scanline" aria-hidden="true"></div>
+<a class="skip-link" href="#projects">Skip to content</a>
 
 <header class="masthead">
   <div class="masthead-inner">
-    <span class="mark">Sergio</span>
-    <nav class="masthead-nav">
-      <a href="#work">Work</a>
+    <a class="mark" href="#hero">SL<span>.</span></a>
+    <nav class="masthead-nav" aria-label="Main navigation">
       <a href="#projects">Projects</a>
+      <a href="#work">About</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -29,43 +29,35 @@
 <main>
 
   <section class="hero" id="hero">
-    <p class="hero-line">A biologist who learned to build the software biology needs. Software engineer, leaning ML.</p>
+    <div class="hero-intro">
+      <p class="eyebrow">Sergio Lozano / Software engineer</p>
+      <h1>Building software.<br><em>Exploring what’s<br>possible.</em></h1>
+      <p class="hero-line">I’m Sergio, a software engineer focused on machine learning and data. From biomedical AI to a transformer built from scratch, I turn ideas into working systems.</p>
+      <div class="hero-actions"><a class="button-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button-secondary" href="#contact">Get in touch</a></div>
+      <p class="availability"><span aria-hidden="true"></span>Open to software engineering roles</p>
+    </div>
     <div class="terminal" id="terminal">
       <div class="terminal-head">
-        <span class="terminal-title">sergio@portfolio — ask-anything</span>
+        <span class="terminal-dots" aria-hidden="true">● ● ●</span><span class="terminal-title">Ask about Sergio</span>
       </div>
-      <div class="terminal-body" id="terminalBody">
-        <div class="msg msg-system">Loaded knowledge base on Sergio Lozano. Ask about his work, BioLyra, background, or how to reach him.</div>
+      <div class="terminal-body" id="terminalBody" role="log" aria-live="polite" aria-label="Assistant conversation">
+        <div class="msg msg-system">Hi, I’m Sergio’s portfolio assistant.
+
+Ask me about his projects, his approach to software and machine learning, or what he could bring to your team.</div>
       </div>
       <form class="terminal-input" id="chatForm">
         <span class="prompt-glyph">&gt;</span>
-        <input type="text" id="chatInput" autocomplete="off" placeholder="ask about sergio..." aria-label="Message the assistant">
-        <button type="submit">send</button>
+        <input type="text" id="chatInput" autocomplete="off" placeholder="What would you like to know?" aria-label="Message the assistant">
+        <button type="submit">Send ↗</button>
       </form>
     </div>
   </section>
 
-  <section class="page-section" id="work">
-    <h2>Work</h2>
-    <p>
-      Sergio has completed an M.S. in Computer Science at UTRGV (GPA 3.80, awarded May 2026),
-      built on top of a B.S. in Biology with a Chemistry minor. He's looking for software
-      engineering roles, with a strong lean toward machine learning and data engineering —
-      the biology background is not a detour from the software work, it's the reason he
-      builds it: he's spent time on the bench, and now he builds the tools that bench work
-      increasingly depends on.
-    </p>
-    <p>
-      Primary language is Python; he also works in Rust, C++, JAX, and SQL, with PyTorch,
-      HuggingFace, Docker, FastAPI, LangGraph, ChromaDB, and Weights &amp; Biases in regular use.
-    </p>
-  </section>
-
   <section class="page-section" id="projects">
-    <h2>Projects</h2>
+    <h2><span>01 / Selected projects</span>Built with curiosity. Tested with care.</h2>
 
     <article class="project project-flagship">
-      <h3>BioLyra</h3>
+      <p class="eyebrow">Biomedical AI</p><h3>BioLyra</h3>
       <p class="project-role">Agentic biomedical AI assistant</p>
       <p>
         An agent built to answer biomedical questions the way a researcher would: pull from
@@ -86,11 +78,12 @@
       </p>
       <p class="project-link">
         <a href="https://biolyra-orbscaelxwlx7utxth6nue.streamlit.app" target="_blank" rel="noopener">Try it live &rarr;</a>
+        <span class="link-hint">Free hosting: the demo may take about 30 seconds to wake up.</span>
       </p>
     </article>
 
     <article class="project project-flagship">
-      <h3>Forge</h3>
+      <p class="eyebrow">Models &amp; systems</p><h3>Forge</h3>
       <p class="project-role">From-scratch LLM training (JAX) + high-performance Rust inference</p>
       <p>
         A decoder-only transformer (13.69M parameters), hand-written from scratch in JAX —
@@ -118,8 +111,21 @@
 
     <div class="project-grid">
       <article class="project">
+        <h3>Stock &amp; ETF Analyzer</h3>
+        <p>A research dashboard built on my Crypto Price Analyzer: US stock and ETF history, interactive price and volume charts, technical indicators, and watchlists. A Python/FastAPI backend supports reproducible data snapshots and a prediction journal for evaluating forecasts against observed outcomes.</p>
+        <p class="project-link"><a href="https://github.com/SergioL22/Crypto-Price-Analyzer" target="_blank" rel="noopener">Explore the code &rarr;</a> <span class="link-hint">Lives in the Crypto-Price-Analyzer repo.</span></p>
+      </article>
+      <article class="project">
+        <h3>Still Sudoku</h3>
+        <p>A browser-based Sudoku game built for friends, with solo puzzles, real-time Race and Co-op modes, leaderboards, and guided lessons. Vanilla JavaScript and Firebase power the game, with saved progress and selectable themes.</p>
+        <p class="project-note">A casual side project with friend-group humor.</p>
+        <p class="project-link"><a href="https://sudokuuuuu-e6684.web.app" target="_blank" rel="noopener">Play Sudoku &rarr;</a></p>
+      </article>
+
+      <article class="project">
         <h3>D&amp;D Discord Bot</h3>
         <p>A feature-complete D&amp;D 5e Discord bot: character sheets, initiative-based combat with persistent encounters, and spell/slot tracking pulled live from the D&amp;D 5e API. An AI Dungeon Master (OpenAI) generates scenes, NPC dialogue, and encounters with per-channel campaign memory; campaigns save, load, and export.</p>
+        <p class="project-link"><a href="https://github.com/SergioL22/DND-Discord-Bot" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
       <article class="project">
         <h3>Job Application Pipeline</h3>
@@ -128,20 +134,38 @@
       <article class="project">
         <h3>Disease Prediction</h3>
         <p>Trains and compares tuned Logistic Regression and Random Forest models (RandomizedSearchCV, 5-fold CV, ROC-AUC) on the UCI Cleveland heart disease dataset, then serves the winner through a Streamlit app with color-coded risk levels and SHAP-based explanations of which clinical features drove each prediction.</p>
+        <p class="project-link"><a href="https://github.com/SergioL22/disease-prediction" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
       <article class="project">
         <h3>SpotifyData</h3>
         <p>Parses his own exported Spotify streaming history and Wrapped data into a Streamlit dashboard: top artists, listening trends over time, an hour/day heatmap, and genre enrichment via the Spotify API with local caching.</p>
+        <p class="project-link"><a href="https://github.com/SergioL22/Spotify-Analysis" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
       <article class="project">
         <h3>Crypto Price Analyzer</h3>
         <p>A menu-driven CLI against the CoinGecko API: live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance), a local portfolio tracker with P&amp;L and backtesting, and price/RSI alerts.</p>
+        <p class="project-note">The original version of what grew into the Stock &amp; ETF Analyzer above; both live in the same repo.</p>
       </article>
     </div>
   </section>
 
+  <section class="page-section" id="work">
+    <h2><span>02 / Background</span>Curiosity, translated into code.</h2>
+    <p>
+      I’m a software engineer with an M.S. in Computer Science from UTRGV (GPA 3.80,
+      awarded May 2026). My focus is machine learning and data engineering: building
+      useful AI applications, understanding the models underneath, and making systems
+      run efficiently. My earlier training in biology brings a researcher’s mindset
+      to the work—ask good questions, test assumptions, and follow the evidence.
+    </p>
+    <p>
+      My primary language is Python; I also work in Rust, C++, JAX, and SQL, with PyTorch,
+      HuggingFace, Docker, FastAPI, LangGraph, ChromaDB, and Weights &amp; Biases in regular use.
+    </p>
+  </section>
+
   <section class="page-section" id="education">
-    <h2>Education</h2>
+    <h2><span>03 / Education</span>A foundation in two disciplines.</h2>
     <dl class="edu-list">
       <div class="edu-entry">
         <dt>M.S. Computer Science — UTRGV</dt>
@@ -159,7 +183,7 @@
   </section>
 
   <section class="page-section" id="contact">
-    <h2>Contact</h2>
+    <h2><span>04 / Contact</span>Let’s build something useful.</h2>
     <p>Based in South Texas. Open to relocating anywhere.</p>
     <ul class="contact-list">
       <li><a href="mailto:sergioa_la@hotmail.com">sergioa_la@hotmail.com</a></li>
@@ -171,7 +195,7 @@
 </main>
 
 <footer class="site-footer">
-  <span>Sergio Lozano</span>
+  <span>Sergio Lozano</span><a href="#hero">Back to top ↑</a>
 </footer>
 
 <script src="script.js"></script>

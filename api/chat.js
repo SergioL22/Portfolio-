@@ -45,6 +45,12 @@ module.exports = async (req, res) => {
     content: String(m.content || '').slice(0, 2000),
   }));
 
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('ANTHROPIC_API_KEY is not set in this Vercel environment.');
+    res.status(503).json({ error: 'The assistant is unavailable right now.' });
+    return;
+  }
+
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -55,7 +61,10 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-5',
-        max_tokens: 500,
+        // Sonnet 5 thinks by default; thinking tokens count toward max_tokens,
+        // so leave headroom and keep effort low for short chat replies.
+        max_tokens: 1024,
+        output_config: { effort: 'low' },
         system: SYSTEM_PROMPT,
         messages: trimmed,
       }),
@@ -63,13 +72,15 @@ module.exports = async (req, res) => {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error('Anthropic API error:', errText);
+      // Check Vercel > Logs for this line: 401 = bad key, 400 with "credit balance" = billing, 429 = rate limit.
+      console.error(`Anthropic API error ${response.status}:`, errText);
       res.status(502).json({ error: 'The assistant is unavailable right now.' });
       return;
     }
 
     const data = await response.json();
-    const reply = data.content?.find((b) => b.type === 'text')?.text || '';
+    const reply = data.content?.find((b) => b.type === 'text')?.text
+      || 'Sorry, I lost my train of thought. Could you ask that again?';
     res.status(200).json({ reply });
   } catch (err) {
     console.error(err);

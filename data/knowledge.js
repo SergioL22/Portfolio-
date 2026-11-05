@@ -76,6 +76,16 @@ active project.
   visualizations) is public at sergiol22.github.io/Forge/.
 
 ## Other projects
+- Stock & ETF Analyzer: a research dashboard within the Crypto Price Analyzer repository
+  (github.com/SergioL22/Crypto-Price-Analyzer). It supports US stock/ETF historical
+  research, interactive price/volume charts, technical indicators, and watchlists,
+  with a Python/FastAPI backend, reproducible dataset snapshots and a prediction
+  journal for evaluating forecasts against observed outcomes. Do not claim validated
+  predictive accuracy. A separate public demonstration uses synthetic data.
+- Still Sudoku: a casual browser game built for friends using vanilla JavaScript
+  and Firebase. Features include solo puzzles, real-time Race and Co-op multiplayer,
+  leaderboards, guided lessons, saved browser progress and selectable themes.
+  Live at https://sudokuuuuu-e6684.web.app. It includes informal friend-group humor.
 - Crypto Price Analyzer: a menu-driven CLI against the CoinGecko API — live prices,
   technical indicators (RSI, MACD, Bollinger Bands, support/resistance, volume spikes),
   a local SQLite-backed portfolio tracker with P&L and backtesting, and price/RSI
