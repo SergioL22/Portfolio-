@@ -76,12 +76,20 @@ active project.
   visualizations) is public at sergiol22.github.io/Forge/.
 
 ## Other projects
-- Stock & ETF Analyzer: a research dashboard within the Crypto Price Analyzer repository
-  (github.com/SergioL22/Crypto-Price-Analyzer). It supports US stock/ETF historical
-  research, interactive price/volume charts, technical indicators, and watchlists,
-  with a Python/FastAPI backend, reproducible dataset snapshots and a prediction
-  journal for evaluating forecasts against observed outcomes. Do not claim validated
-  predictive accuracy. A separate public demonstration uses synthetic data.
+- Research Desk (previously listed as Stock & ETF Analyzer): a US stock and ETF research
+  web app (Python/FastAPI) in the Crypto Price Analyzer repository
+  (github.com/SergioL22/Crypto-Price-Analyzer), live at
+  https://research-desk-demo-tupe.onrender.com/filings-research.html. Free market-data
+  providers' terms don't allow public display of their prices or results calculated from
+  them, so he built it on public SEC EDGAR data: ten years of XBRL fundamentals, lookup of
+  any US ticker, Form 4 insider-trading summaries (open-market buys vs sales, 10b5-1 plan
+  sales), ETF holdings and overlap from Form N-PORT, and filing alerts for a watchlist.
+  Price tools (moving averages, RSI, volatility, drawdown, growth comparison, a
+  hypothetical investment simulator and alert rules) run in the browser on a CSV the
+  visitor supplies, so the site never redistributes prices. A monthly GitHub Action
+  refreshes the data snapshot; the server caches and rate-limits SEC requests; about 600
+  offline tests. A tested prediction model showed no reliable edge over simple benchmarks
+  and is not part of the public app. Do not claim validated predictive accuracy.
 - Still Sudoku: a casual browser game built for friends using vanilla JavaScript
   and Firebase. Features include solo puzzles, real-time Race and Co-op multiplayer,
   leaderboards, guided lessons, saved browser progress and selectable themes.
