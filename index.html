@@ -125,9 +125,11 @@ Ask me about his projects, his approach to software and machine learning, or wha
 
     <div class="project-grid">
       <article class="project">
-        <h3>Stock &amp; ETF Analyzer</h3>
-        <p>A research dashboard built on my Crypto Price Analyzer: US stock and ETF history, interactive price and volume charts, technical indicators, and watchlists. A Python/FastAPI backend supports reproducible data snapshots and a prediction journal for evaluating forecasts against observed outcomes.</p>
-        <p class="project-link"><a href="https://github.com/SergioL22/Crypto-Price-Analyzer" target="_blank" rel="noopener">Explore the code &rarr;</a> <span class="link-hint">Lives in the Crypto-Price-Analyzer repo.</span></p>
+        <h3>Research Desk</h3>
+        <p class="project-role">Stock &amp; ETF research built on public SEC data</p>
+        <p>A FastAPI web app for researching US stocks and ETFs. Free market-data APIs don't allow their prices to be shown publicly, so the app is built on public SEC EDGAR filings instead: ten years of reported fundamentals, any US ticker on demand, insider-trading summaries from Form 4s, ETF holdings and overlap from Form N-PORT, and filing alerts for a watchlist. Price tools such as indicators, risk measures and a hypothetical investment simulator run in the browser on a CSV the visitor opens, so no prices are ever redistributed.</p>
+        <p class="project-note">Covered by about 600 offline tests. A monthly GitHub Action rebuilds the data snapshot, and the server caches and rate-limits every SEC request.</p>
+        <p class="project-link"><a href="https://research-desk-demo-tupe.onrender.com/filings-research.html" target="_blank" rel="noopener">Try it live &rarr;</a> <a href="https://github.com/SergioL22/Crypto-Price-Analyzer" target="_blank" rel="noopener">Explore the code &rarr;</a> <span class="link-hint">Free hosting: the demo may take about 30 seconds to wake up.</span></p>
       </article>
       <article class="project">
         <h3>Still Sudoku</h3>
@@ -158,7 +160,7 @@ Ask me about his projects, his approach to software and machine learning, or wha
       <article class="project">
         <h3>Crypto Price Analyzer</h3>
         <p>A menu-driven CLI against the CoinGecko API: live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance), a local portfolio tracker with P&amp;L and backtesting, and price/RSI alerts.</p>
-        <p class="project-note">The original version of what grew into the Stock &amp; ETF Analyzer above; both live in the same repo.</p>
+        <p class="project-note">The original version of what grew into Research Desk above; both live in the same repo.</p>
       </article>
     </div>
   </section>
