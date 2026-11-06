@@ -9,7 +9,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0b1014">
+<meta name="theme-color" content="#05070b">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sergio-lozano.vercel.app/">
 <meta property="og:title" content="Sergio Lozano — Software Engineer">
@@ -21,16 +21,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <a class="skip-link" href="#projects">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="mark" href="#hero">SL<span>.</span></a>
+    <a class="mark" id="mark" href="#hero" aria-label="Sergio Lozano, back to top">SL<span>.</span></a>
     <nav class="masthead-nav" aria-label="Main navigation">
       <a href="#projects">Projects</a>
       <a href="#work">About</a>
@@ -44,20 +48,29 @@
 
   <section class="hero" id="hero">
     <div class="hero-intro">
-      <p class="eyebrow">Sergio Lozano / Software engineer</p>
-      <h1>Building software.<br><em>Exploring what’s<br>possible.</em></h1>
-      <p class="hero-line">I’m Sergio, a software engineer focused on machine learning and data. From biomedical AI to a transformer built from scratch, I turn ideas into working systems.</p>
-      <div class="hero-actions"><a class="button-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button-secondary" href="#contact">Get in touch</a></div>
-      <p class="availability"><span aria-hidden="true"></span>Open to software engineering roles</p>
+      <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Open to software engineering roles</p>
+      <h1><span class="hero-name">Sergio<br>Lozano</span></h1>
+      <p class="hero-typed">I build <span class="sr-only">machine learning systems, AI agents, fast Rust inference and data pipelines.</span><span class="typed" id="typed" aria-hidden="true">machine learning systems</span><span class="caret" aria-hidden="true"></span></p>
+      <p class="hero-line">A software engineer focused on machine learning and data. From biomedical AI to a transformer built from scratch, I turn ideas into working systems.</p>
+      <div class="hero-actions">
+        <a class="button-primary magnetic" href="#projects"><span>Explore my work</span> <span aria-hidden="true">↗</span></a>
+        <a class="button-secondary magnetic" href="#contact">Get in touch</a>
+      </div>
+      <p class="field-hint" aria-hidden="true">Move your cursor — the network reacts.</p>
     </div>
-    <div class="terminal" id="terminal">
+    <div class="terminal tilt" id="terminal">
       <div class="terminal-head">
-        <span class="terminal-dots" aria-hidden="true">● ● ●</span><span class="terminal-title">Ask about Sergio</span>
+        <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="terminal-title">✦ Ask about Sergio</span><span class="terminal-live" aria-hidden="true">AI · live</span>
       </div>
       <div class="terminal-body" id="terminalBody" role="log" aria-live="polite" aria-label="Assistant conversation">
         <div class="msg msg-system">Hi, I’m Sergio’s portfolio assistant.
 
 Ask me about his projects, his approach to software and machine learning, or what he could bring to your team.</div>
+      </div>
+      <div class="chips" id="chips">
+        <button type="button" class="chip">What is Forge?</button>
+        <button type="button" class="chip">Why hire Sergio?</button>
+        <button type="button" class="chip">How does BioLyra work?</button>
       </div>
       <form class="terminal-input" id="chatForm">
         <span class="prompt-glyph">&gt;</span>
@@ -67,11 +80,27 @@ Ask me about his projects, his approach to software and machine learning, or wha
     </div>
   </section>
 
-  <section class="page-section" id="projects">
-    <h2><span>01 / Selected projects</span>Built with curiosity. Tested with care.</h2>
+  <section class="stats" aria-label="Highlights">
+    <div class="stat"><strong data-count="7.7" data-decimals="1" data-suffix="×">7.7×</strong><span>faster Rust inference than the Python baseline</span></div>
+    <div class="stat"><strong data-count="13.69" data-decimals="2" data-suffix="M">13.69M</strong><span>parameter transformer written from scratch in JAX</span></div>
+    <div class="stat"><strong data-count="600" data-prefix="~">~600</strong><span>offline tests behind Research Desk</span></div>
+    <div class="stat"><strong data-count="3.8" data-decimals="2">3.80</strong><span>GPA, M.S. Computer Science</span></div>
+  </section>
 
-    <article class="project project-flagship">
-      <p class="eyebrow">Biomedical AI</p><h3>BioLyra</h3>
+  <div class="marquee" aria-label="Tools I use">
+    <div class="marquee-track">
+      <span>Python</span><span>Rust</span><span>JAX</span><span>PyTorch</span><span>C++</span><span>SQL</span><span>HuggingFace</span><span>LangGraph</span><span>FastAPI</span><span>Docker</span><span>ChromaDB</span><span>Weights &amp; Biases</span>
+      <span aria-hidden="true">Python</span><span aria-hidden="true">Rust</span><span aria-hidden="true">JAX</span><span aria-hidden="true">PyTorch</span><span aria-hidden="true">C++</span><span aria-hidden="true">SQL</span><span aria-hidden="true">HuggingFace</span><span aria-hidden="true">LangGraph</span><span aria-hidden="true">FastAPI</span><span aria-hidden="true">Docker</span><span aria-hidden="true">ChromaDB</span><span aria-hidden="true">Weights &amp; Biases</span>
+    </div>
+  </div>
+
+  <section class="page-section" id="projects">
+    <h2><span>01 / Selected projects</span>Built with curiosity. <em>Tested with care.</em></h2>
+
+    <div class="flagships">
+    <article class="project project-flagship tilt" style="--accent:#5eead4;--accent2:#38bdf8">
+      <div class="flagship-top"><p class="eyebrow">Biomedical AI</p><span class="flagship-num" aria-hidden="true">01</span></div>
+      <h3>BioLyra</h3>
       <p class="project-role">Agentic biomedical AI assistant</p>
       <p>
         An agent built to answer biomedical questions the way a researcher would: pull from
@@ -90,14 +119,16 @@ Ask me about his projects, his approach to software and machine learning, or wha
         Ollama and Llama 3.1 with Flask and SQLite — which he rebuilt with more advanced
         RAG techniques and renamed.
       </p>
+      <ul class="tags" aria-label="Built with"><li>LangGraph</li><li>ChromaDB</li><li>BioBERT</li><li>QLoRA</li><li>FastAPI</li></ul>
       <p class="project-link">
         <a href="https://biolyra-orbscaelxwlx7utxth6nue.streamlit.app" target="_blank" rel="noopener">Try it live &rarr;</a>
         <span class="link-hint">Free hosting: the demo may take about 30 seconds to wake up.</span>
       </p>
     </article>
 
-    <article class="project project-flagship">
-      <p class="eyebrow">Models &amp; systems</p><h3>Forge</h3>
+    <article class="project project-flagship tilt" style="--accent:#a78bfa;--accent2:#f472b6">
+      <div class="flagship-top"><p class="eyebrow">Models &amp; systems</p><span class="flagship-num" aria-hidden="true">02</span></div>
+      <h3>Forge</h3>
       <p class="project-role">From-scratch LLM training (JAX) + high-performance Rust inference</p>
       <p>
         A decoder-only transformer (13.69M parameters), hand-written from scratch in JAX —
@@ -107,6 +138,10 @@ Ask me about his projects, his approach to software and machine learning, or wha
         trusted, then incrementally optimized: KV caching, static and continuous batching,
         and INT8 quantization, each step benchmarked against the last.
       </p>
+      <div class="bench" aria-label="Tokens per second: Python baseline 13.7, Rust engine 105.2">
+        <div class="bench-row"><span>Python baseline</span><div class="bench-bar"><i style="--w:13%"></i></div><b>13.7 tok/s</b></div>
+        <div class="bench-row"><span>Rust engine</span><div class="bench-bar"><i style="--w:100%"></i></div><b>105.2 tok/s</b></div>
+      </div>
       <p class="project-note">
         Every number is measured, not estimated: the Rust engine runs 7.7x faster than the
         Python baseline (105.2 vs 13.7 tok/s), KV caching alone is a 5.2x speedup, and INT8
@@ -122,42 +157,43 @@ Ask me about his projects, his approach to software and machine learning, or wha
         <a href="https://sergiol22.github.io/Forge/" target="_blank" rel="noopener">View full benchmark results &rarr;</a>
       </p>
     </article>
+    </div>
 
     <div class="project-grid">
-      <article class="project">
+      <article class="project tilt" style="--accent:#fbbf24">
         <h3>Research Desk</h3>
         <p class="project-role">Stock &amp; ETF research built on public SEC data</p>
         <p>A FastAPI web app for researching US stocks and ETFs. Free market-data APIs don't allow their prices to be shown publicly, so the app is built on public SEC EDGAR filings instead: ten years of reported fundamentals, any US ticker on demand, insider-trading summaries from Form 4s, ETF holdings and overlap from Form N-PORT, and filing alerts for a watchlist. Price tools such as indicators, risk measures and a hypothetical investment simulator run in the browser on a CSV the visitor opens, so no prices are ever redistributed.</p>
         <p class="project-note">Covered by about 600 offline tests. A monthly GitHub Action rebuilds the data snapshot, and the server caches and rate-limits every SEC request.</p>
         <p class="project-link"><a href="https://research-desk-demo-tupe.onrender.com/" target="_blank" rel="noopener">Try it live &rarr;</a> <a href="https://github.com/SergioL22/research-desk" target="_blank" rel="noopener">Explore the code &rarr;</a> <span class="link-hint">Free hosting: the demo may take about 30 seconds to wake up.</span></p>
       </article>
-      <article class="project">
+      <article class="project tilt" style="--accent:#f472b6">
         <h3>Still Sudoku</h3>
         <p>A browser-based Sudoku game built for friends, with solo puzzles, real-time Race and Co-op modes, leaderboards, and guided lessons. Vanilla JavaScript and Firebase power the game, with saved progress and selectable themes.</p>
         <p class="project-note">A casual side project with friend-group humor.</p>
         <p class="project-link"><a href="https://sudokuuuuu-e6684.web.app" target="_blank" rel="noopener">Play Sudoku &rarr;</a></p>
       </article>
 
-      <article class="project">
+      <article class="project tilt" style="--accent:#f87171">
         <h3>D&amp;D Discord Bot</h3>
         <p>A feature-complete D&amp;D 5e Discord bot: character sheets, initiative-based combat with persistent encounters, and spell/slot tracking pulled live from the D&amp;D 5e API. An AI Dungeon Master (OpenAI) generates scenes, NPC dialogue, and encounters with per-channel campaign memory; campaigns save, load, and export.</p>
         <p class="project-link"><a href="https://github.com/SergioL22/DND-Discord-Bot" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
-      <article class="project">
+      <article class="project tilt" style="--accent:#38bdf8">
         <h3>Job Application Pipeline</h3>
         <p>Scrapes Greenhouse, Lever, and USAJobs postings into SQLite with four-level deduplication, scores each against multiple resume profiles with an explainable breakdown, and uses the Claude API to tailor resumes and cover letters without inventing qualifications. A safety-checked flow can fill and submit Greenhouse applications, but only after an explicit, fresh confirmation.</p>
       </article>
-      <article class="project">
+      <article class="project tilt" style="--accent:#4ade80">
         <h3>Disease Prediction</h3>
         <p>Trains and compares tuned Logistic Regression and Random Forest models (RandomizedSearchCV, 5-fold CV, ROC-AUC) on the UCI Cleveland heart disease dataset, then serves the winner through a Streamlit app with color-coded risk levels and SHAP-based explanations of which clinical features drove each prediction.</p>
         <p class="project-link"><a href="https://github.com/SergioL22/disease-prediction" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
-      <article class="project">
+      <article class="project tilt" style="--accent:#a3e635">
         <h3>SpotifyData</h3>
         <p>Parses his own exported Spotify streaming history and Wrapped data into a Streamlit dashboard: top artists, listening trends over time, an hour/day heatmap, and genre enrichment via the Spotify API with local caching.</p>
         <p class="project-link"><a href="https://github.com/SergioL22/Spotify-Analysis" target="_blank" rel="noopener">Explore the code &rarr;</a></p>
       </article>
-      <article class="project">
+      <article class="project tilt" style="--accent:#fb923c">
         <h3>Crypto Price Analyzer</h3>
         <p>A menu-driven CLI against the CoinGecko API: live prices, technical indicators (RSI, MACD, Bollinger Bands, support/resistance), a local portfolio tracker with P&amp;L and backtesting, and price/RSI alerts.</p>
         <p class="project-note">The original version of what grew into Research Desk above; both live in the same repo.</p>
@@ -166,54 +202,64 @@ Ask me about his projects, his approach to software and machine learning, or wha
   </section>
 
   <section class="page-section" id="work">
-    <h2><span>02 / Background</span>Curiosity, translated into code.</h2>
-    <p>
-      I’m a software engineer with an M.S. in Computer Science from UTRGV (GPA 3.80,
-      awarded May 2026). My focus is machine learning and data engineering: building
-      useful AI applications, understanding the models underneath, and making systems
-      run efficiently. My earlier training in biology brings a researcher’s mindset
-      to the work—ask good questions, test assumptions, and follow the evidence.
-    </p>
-    <p>
-      My primary language is Python; I also work in Rust, C++, JAX, and SQL, with PyTorch,
-      HuggingFace, Docker, FastAPI, LangGraph, ChromaDB, and Weights &amp; Biases in regular use.
-    </p>
+    <h2><span>02 / Background</span>Curiosity, <em>translated into code.</em></h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I’m a software engineer with an M.S. in Computer Science from UTRGV (GPA 3.80,
+          awarded May 2026). My focus is machine learning and data engineering: building
+          useful AI applications, understanding the models underneath, and making systems
+          run efficiently. My earlier training in biology brings a researcher’s mindset
+          to the work—ask good questions, test assumptions, and follow the evidence.
+        </p>
+        <p>
+          My primary language is Python; I also work in Rust, C++, JAX, and SQL, with PyTorch,
+          HuggingFace, Docker, FastAPI, LangGraph, ChromaDB, and Weights &amp; Biases in regular use.
+        </p>
+      </div>
+      <ul class="principles">
+        <li class="tilt"><b>Ask good questions</b><span>Start from what the problem actually needs.</span></li>
+        <li class="tilt"><b>Test assumptions</b><span>Measure before claiming, and verify against a reference.</span></li>
+        <li class="tilt"><b>Follow the evidence</b><span>Report what didn’t work, not just what did.</span></li>
+      </ul>
+    </div>
   </section>
 
   <section class="page-section" id="education">
-    <h2><span>03 / Education</span>A foundation in two disciplines.</h2>
+    <h2><span>03 / Education</span>A foundation in <em>two disciplines.</em></h2>
     <dl class="edu-list">
-      <div class="edu-entry">
+      <div class="edu-entry tilt">
         <dt>M.S. Computer Science — UTRGV</dt>
         <dd>2024–2026, GPA 3.80. Computer Architecture, Design and Analysis of Algorithms, Unconventional Computing, Information Retrieval, Data Science.</dd>
       </div>
-      <div class="edu-entry">
+      <div class="edu-entry tilt">
         <dt>B.S. Biology, Chemistry minor — UTRGV</dt>
         <dd>2020–2023.</dd>
       </div>
-      <div class="edu-entry">
+      <div class="edu-entry tilt">
         <dt>AI Engineer Core Track — Ed Donner, Udemy</dt>
         <dd>Completed June 2026. Also working through the Agentic Track: OpenAI Agents SDK, LangGraph, CrewAI, MCP, AutoGen.</dd>
       </div>
     </dl>
   </section>
 
-  <section class="page-section" id="contact">
-    <h2><span>04 / Contact</span>Let’s build something useful.</h2>
+  <section class="page-section contact" id="contact">
+    <h2><span>04 / Contact</span>Let’s build <em>something useful.</em></h2>
     <p>Based in South Texas. Open to relocating anywhere.</p>
     <ul class="contact-list">
-      <li><a href="/assets/Sergio_Lozano_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
-      <li><a href="mailto:sergioa_la@hotmail.com">sergioa_la@hotmail.com</a></li>
-      <li><a href="https://github.com/SergioL22" target="_blank" rel="noopener">github.com/SergioL22</a></li>
-      <li><a href="https://linkedin.com/in/sergio-lozano-20021b239" target="_blank" rel="noopener">linkedin.com/in/sergio-lozano-20021b239</a></li>
+      <li><a class="magnetic" href="/assets/Sergio_Lozano_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+      <li><a class="magnetic" href="mailto:sergioa_la@hotmail.com">sergioa_la@hotmail.com</a></li>
+      <li><a class="magnetic" href="https://github.com/SergioL22" target="_blank" rel="noopener">github.com/SergioL22</a></li>
+      <li><a class="magnetic" href="https://linkedin.com/in/sergio-lozano-20021b239" target="_blank" rel="noopener">linkedin.com/in/sergio-lozano-20021b239</a></li>
     </ul>
   </section>
 
 </main>
 
 <footer class="site-footer">
-  <span>Sergio Lozano</span><a href="#hero">Back to top ↑</a>
+  <span>Sergio Lozano · <span class="egg-hint">psst… try ↑ ↑ ↓ ↓ ← → ← → B A, or tap SL. five times</span></span><a href="#hero">Back to top ↑</a>
 </footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="script.js"></script>
 </body>
