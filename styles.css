@@ -63,6 +63,7 @@ body::after {
   background:radial-gradient(circle,#5eead422,#a78bfa14 35%,transparent 65%);
   transition:opacity .4s; will-change:transform
 }
+body:not(.has-pointer) .cursor-glow { display:none }
 body.has-pointer .cursor-glow { opacity:1 }
 .scroll-progress { position:fixed; top:0; left:0; right:0; height:3px; z-index:50 }
 .scroll-progress span { display:block; height:100%; width:100%; background:var(--grad); transform-origin:left; transform:scaleX(0) }
@@ -364,6 +365,15 @@ body.party .hero-name { animation-duration:1.2s }
   .contact-list { flex-direction:column; align-items:stretch }
   .contact-list a { display:block }
   .site-footer { flex-direction:column; padding:26px 16px 36px }
+}
+@media (max-width:480px) {
+  .mark { font-size:22px }
+  .masthead-inner { gap:10px }
+  .masthead-nav { min-width:0; overflow-x:auto; scrollbar-width:none }
+  .masthead-nav a { font-size:10px; padding:6px 7px; white-space:nowrap }
+  .terminal-head { gap:10px; padding:14px 16px }
+  .terminal-live { display:none }
+  .terminal-input button { padding:10px 12px }
 }
 @media (prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto }
