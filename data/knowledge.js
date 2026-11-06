@@ -77,9 +77,9 @@ active project.
 
 ## Other projects
 - Research Desk (previously listed as Stock & ETF Analyzer): a US stock and ETF research
-  web app (Python/FastAPI) in the Crypto Price Analyzer repository
-  (github.com/SergioL22/Crypto-Price-Analyzer), live at
-  https://research-desk-demo-tupe.onrender.com/filings-research.html. Free market-data
+  web app (Python/FastAPI) in the research-desk repository
+  (github.com/SergioL22/research-desk), live at
+  https://research-desk-demo-tupe.onrender.com/. Free market-data
   providers' terms don't allow public display of their prices or results calculated from
   them, so he built it on public SEC EDGAR data: ten years of XBRL fundamentals, lookup of
   any US ticker, Form 4 insider-trading summaries (open-market buys vs sales, 10b5-1 plan
